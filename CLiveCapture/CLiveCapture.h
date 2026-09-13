@@ -1,10 +1,12 @@
 ﻿#pragma once
 #include <QMainWindow>
+#include <QElapsedTimer>
 
 class QPushButton;
 class QCamera;
 class QMediaCaptureSession;
 class QVideoWidget;
+class QVideoSink;
 
 class CLiveCapture : public QMainWindow
 {
@@ -27,4 +29,8 @@ private:
     QCamera* camera;
     QMediaCaptureSession* captureSession;
     QVideoWidget* videoWidget;
+    QVideoSink* videoSink;
+    bool frameSaved = false;
+    QElapsedTimer fpsTimer;
+    int frameCount = 0;
 };
