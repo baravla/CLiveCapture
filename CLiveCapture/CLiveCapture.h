@@ -1,8 +1,30 @@
-﻿// CLiveCapture.h : Include file for standard system include files,
-// or project specific include files.
+﻿#pragma once
+#include <QMainWindow>
 
-#pragma once
+class QPushButton;
+class QCamera;
+class QMediaCaptureSession;
+class QVideoWidget;
 
-#include <iostream>
+class CLiveCapture : public QMainWindow
+{
 
-// TODO: Reference additional headers your program requires here.
+    Q_OBJECT
+
+public:
+    explicit CLiveCapture(QWidget* parent = nullptr);
+
+private slots:
+    void startCapture();
+    void stopCapture();
+
+
+signals:
+    void captureStarted(const QString& deviceName);
+
+private:
+    QPushButton* startButton;
+    QCamera* camera;
+    QMediaCaptureSession* captureSession;
+    QVideoWidget* videoWidget;
+};
